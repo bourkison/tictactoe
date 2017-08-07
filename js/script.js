@@ -94,4 +94,31 @@ let checkForWin = function() {
     } // if
   } // i loop
 
+  // Now let's check diagonally, firstly from top-left to bottom-right.
+  // First check that the top left is equal to the middle.
+  if (gameBoard[0][0] === gameBoard[1][1]) {
+    // Next check to see if the middle is equal to the bottom-right
+    if (gameBoard[1][1] === gameBoard[2][2]) {
+      // Now check to see that one of these is equal to X or O
+      if (gameBoard[0][0] === "X" || gameBoard[0][0] === "O") {
+        console.log(`Congratulations, ${gameBoard[0][0]} wins!`);
+        gameWon = true;
+        return;
+      }
+    }// if
+  } // if
+
+  // Finally let's check diagonally from top-right to bottom-left.
+  // First check that the top right is equal to the middle.
+  if (gameBoard[0][2] === gameBoard[1][1]) {
+    // Next check that the middle is equal to the bottom left.
+    if (gameBoard[1][1] === gameBoard[2][0]) {
+      // Now check to see that one of these is equal to X or O
+      if (gameBoard[0][2] === "X" || gameBoard[0][2] === "O") {
+        console.log(`Congratulations, ${gameBoard[0][2]} wins!`);
+        gameWon = true;
+        return;
+      }
+    } // if
+  } // if
 }
