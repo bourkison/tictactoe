@@ -1,0 +1,14 @@
+.box {
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+  border: 10px solid black;
+  line-height: 150px;
+  font-size: 100px;
+  margin: 5px;
+}
+
+.box:hover {
+  background: black;
+  color: white;
+}

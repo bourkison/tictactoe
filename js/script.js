@@ -121,4 +121,4 @@ let checkForWin = function() {
       }
     } // if
   } // if
-}
+} // checkForWin
