@@ -6,23 +6,31 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <table>
+  <h1>Tic Tac Toe</h1>
+  <div id="buttons">
+    <button id="onep">1 Player</button>
+    <button id="twop">2 Players</button>
+  </div>
+
+  <table style="display:none;">
     <tr>
-      <th class="box"></th>
-      <th class="box"></th>
-      <th class="box"></th>
+      <th class="box" id="0"></th>
+      <th class="box" id="1"></th>
+      <th class="box" id="2"></th>
     </tr>
     <tr>
-      <th class="box"></th>
-      <th class="box"></th>
-      <th class="box"></th>
+      <th class="box" id="3"></th>
+      <th class="box" id="4"></th>
+      <th class="box" id="5"></th>
     </tr>
     <tr>
-      <th class="box"></th>
-      <th class="box"></th>
-      <th class="box"></th>
+      <th class="box" id="6"></th>
+      <th class="box" id="7"></th>
+      <th class="box" id="8"></th>
     </tr>
   </table>
+
+  <div id="results"></div>
 
   <script src="js/jquery.js"></script>
   <script src="js/script.js"></script>

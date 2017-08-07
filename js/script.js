@@ -6,9 +6,9 @@ let gameBoard =
 ];
 
 let gameWon = false;
-
+let twoPlayer = true;
 let xTurn = true;
-
+let log = $("#results")[0];
 
 // First let's set the length of each sub array.
 for (let i = 0; i < gameBoard.length; i++) {
@@ -25,13 +25,15 @@ for (let i = 0; i < gameBoard.length; i ++) {
 let newTurn = function(xPos, yPos) {
   // First let's check to see if someone has won the game.
   if (gameWon) {
-    console.log("Error, someone has already won. Please refresh the browser");
+    console.log("Error, someone has already won. Please refresh the browser.");
+    log.innerHTML = "Error, someone has already won. Please refresh the browser.";
     return;
   } // if
 
   // First let's check to see if the position has anything in it. If so, break out of the function.
   if (gameBoard[yPos][xPos] !== " ") {
     console.log("Error, position is not empty.");
+    log.innerHTML = "Error, position is not empty.";
     return;
   } // if
 
@@ -45,6 +47,7 @@ let newTurn = function(xPos, yPos) {
     xTurn = true;
   } // if else
 
+  console.log("--------------");
   // Now let's print the board out to the console.
   for (let i = 0; i < gameBoard.length; i++) {
     console.log(gameBoard[i].join(" | "));
@@ -55,6 +58,11 @@ let newTurn = function(xPos, yPos) {
 
   // Update the HTML
   updateHTML();
+
+  // Now, if we need to check if we're playing one player or two player, and if we're playing two player we need to come up with the computer's turn.
+  if (!twoPlayer) {
+    aiTurn();
+  } // if
 } // newTurn
 
 
@@ -71,6 +79,7 @@ let checkForWin = function() {
         if (gameBoard[i][0] === "X" || gameBoard[i][0] === "O") {
           // If this is true then someone was won.
           console.log(`Congratulations, ${gameBoard[i][0]} wins!`);
+          log.innerHTML = `Congratulations, ${gameBoard[i][0]} wins!`;
           gameWon = true;
           return;
         } // if
@@ -90,6 +99,7 @@ let checkForWin = function() {
         if (gameBoard[0][i] === "X" || gameBoard[0][i] === "O") {
           // If this is true then someone has won.
           console.log(`Congratulations, ${gameBoard[0][i]} wins!`);
+          log.innerHTML = `Congratulations, ${gameBoard[0][i]} wins!`;
           gameWon = true;
           return;
         }// if
@@ -105,6 +115,7 @@ let checkForWin = function() {
       // Now check to see that one of these is equal to X or O
       if (gameBoard[0][0] === "X" || gameBoard[0][0] === "O") {
         console.log(`Congratulations, ${gameBoard[0][0]} wins!`);
+        log.innerHTML = `Congratulations, ${gameBoard[0][0]} wins!`;
         gameWon = true;
         return;
       }
@@ -119,6 +130,7 @@ let checkForWin = function() {
       // Now check to see that one of these is equal to X or O
       if (gameBoard[0][2] === "X" || gameBoard[0][2] === "O") {
         console.log(`Congratulations, ${gameBoard[0][2]} wins!`);
+        log.innerHTML = `Congratulations, ${gameBoard[0][2]} wins!`;
         gameWon = true;
         return;
       }
@@ -144,3 +156,39 @@ let updateHTML = function() {
     } // j loop
   } // i loop
 } // updateHTML
+
+// Create a variable that will increment every time a turn is made, and will stop the game once it reaches 9 (i.e. there will be no more space on the board).
+let turns = 0;
+
+// Use jQuery to check for a click
+$(".box").click(function() {
+  if (turns < 9) {
+    turns++;
+    let index = this.id;
+
+    // Calculate the x and y position based off of the id.
+    let xPos = index % 3;
+    let yPos = Math.floor(index / 3);
+
+    newTurn(xPos, yPos);
+    if (turns === 9) {
+      console.log(`Game Over. Draw!`);
+      log.innerHTML = `Game Over. Draw!`;
+    }
+  }
+});
+
+$("#onep").click(function() {
+  $("table").css("display", "block");
+  $("#buttons").css("display", "none");
+  twoPlayer = false;
+});
+
+$("#twop").click(function() {
+  $("table").css("display", "block");
+  $("#buttons").css("display", "none");
+});
+
+let aiTurn = function() {
+
+} // aiTurn
