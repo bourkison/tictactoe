@@ -52,6 +52,9 @@ let newTurn = function(xPos, yPos) {
 
   // Check if anyone has won yet
   checkForWin();
+
+  // Update the HTML
+  updateHTML();
 } // newTurn
 
 
@@ -122,3 +125,22 @@ let checkForWin = function() {
     } // if
   } // if
 } // checkForWin
+
+
+// Now let's create another array which just has a reference to the elements in the table.
+let tableRef = $(".box");
+
+// Now create a function which loops through our gameBoard array and updates the th tags accordingly.
+let updateHTML = function() {
+  for (let i = 0; i < gameBoard.length; i++) {
+    for (let j = 0; j < gameBoard[0].length; j++) {
+      // Now check to see that in this index, it's not just equal to nothing.
+      if (gameBoard[j][i] !== " ") {
+        // Convert the 2 dimensional array indices to a one dimensional array index.
+        let tableRefIndex = (j * 3) + i;
+        // Now change the th to be equal to the corresponding value of gameboard.
+        tableRef[tableRefIndex].innerHTML = gameBoard[j][i];
+      } // if
+    } // j loop
+  } // i loop
+} // updateHTML
