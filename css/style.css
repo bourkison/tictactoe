@@ -1,14 +1,84 @@
+body {
+  background-color: #F8FFE5;
+}
+
 .box {
   display: inline-block;
   height: 150px;
   width: 150px;
-  border: 10px solid black;
+  border: 5px solid black;
   line-height: 150px;
   font-size: 100px;
   margin: 5px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #F45B69;
+  color: #EBEBEB;
+  border-radius: 10px;
+  box-shadow: 0 0 20px black;
 }
 
 .box:hover {
-  background: black;
+  background-color: #52489C;
   color: white;
+  box-shadow: 0 0 0 black;
+}
+
+h1 {
+  font-family: 'Leckerli One', sans-serif;
+  padding: 20px 0;
+  font-size: 72px;
+  color: #EBEBEB;
+}
+
+
+.content {
+  margin: 0 auto;
+  text-align: center;
+  width: 900px;
+  height: 900px;
+  background-color: #FFD166;
+  border-radius: 25px;
+  box-shadow: 0 0 15px black;
+  border: 2px solid black;
+}
+
+table {
+  margin: auto;
+  margin-bottom: 50px;
+  display: inline;
+}
+
+#results {
+  width: 550px;
+  margin: 10px auto;
+  text-align: left;
+  padding: 10px;
+  font-family: 'Asap Condensed', sans-serif;
+  font-size: 18px;
+  color: #F8FFE5;
+}
+
+.button {
+  width: 100px;
+  height: 50px;
+  background-color: #F45B69;
+  display: inline-block;
+  color: #EBEBEB;
+  font-size: 18px;
+  font-family: 'Asap Condensed', sans-serif;
+  line-height: 50px;
+  border-radius: 15px;
+  border: 2px solid black;
+  box-shadow: 0 0 10px black;
+}
+
+.button:hover {
+  background-color: #52489C;
+  color: white;
+  box-shadow: 0 0 0 black;
+}
+
+#restart {
+  display: block;
+  margin: 20px auto;
 }

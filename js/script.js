@@ -181,17 +181,42 @@ $(".box").click(function() {
 
 
 $("#onep").click(function() {
-  $("table").css("display", "block");
+  $("#game").css("display", "inline");
   $("#buttons").css("display", "none");
   twoPlayer = false;
 });
 
 $("#twop").click(function() {
-  $("table").css("display", "block");
+  $("#game").css("display", "inline");
   $("#buttons").css("display", "none");
   twoPlayer = true;
 });
 
+$("#restart").click(function() {
+  // Reset the board
+  for (let i = 0; i < gameBoard.length; i ++) {
+    for (let j = 0; j < gameBoard[0].length; j++) {
+        gameBoard[i][j] = " ";
+    } // j loop
+  } // i loop
+
+  // Reset the actual content of the table.
+  for (let i = 0; i < tableRef.length; i ++) {
+    tableRef[i].innerHTML = "";
+  }
+
+  // Hide the game and reshow the buttons
+  $("#game").css("display", "none");
+  $("#buttons").css("display", "inline-block");
+
+  // Reset the booleans...
+  gameWon = false;
+  xTurn = true;
+  turns = 0;
+
+  // Reset the log.
+  log.innerHTML = "";
+})
 
 
 let aiTurn = function() {
@@ -495,7 +520,6 @@ let checkEmptyCorner = function() {
 
 
 let checkEmptySide = function() {
-
   // Top-middle
   if (gameBoard[0][1] === " ") {
     return [1, 0];
@@ -515,5 +539,4 @@ let checkEmptySide = function() {
   if (gameBoard[1][0] === " ") {
     return[0, 1];
   }
-
 }
