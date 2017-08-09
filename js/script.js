@@ -10,6 +10,12 @@ let twoPlayer = true;
 let xTurn = true;
 let log = $("#results")[0];
 
+let xScore = 0;
+let oScore = 0;
+
+let scoreBoard = $("#score")[0];
+
+
 // First let's set the length of each sub array.
 for (let i = 0; i < gameBoard.length; i++) {
   gameBoard[i].length = 3;
@@ -60,7 +66,8 @@ let newTurn = function(xPos, yPos) {
   updateHTML();
 
   // Now, if we need to check if we're playing one player or two player, and if we're playing two player AND its o's turn, we need the ai to make a move.
-  if (!twoPlayer && !xTurn && !gameWon) {
+  //debugger;
+  if (!twoPlayer && !xTurn && !gameWon && turns < 8) {
     aiTurn();
   } // if
 
@@ -83,6 +90,11 @@ let checkForWin = function() {
           console.log(`Congratulations, ${gameBoard[i][0]} wins!`);
           log.innerHTML = `Congratulations, ${gameBoard[i][0]} wins!`;
           gameWon = true;
+          if (gameBoard[i][0] === "X") {
+            xScore++;
+          } else {
+            oScore++;
+          }
           return;
         } // if
       } // if
@@ -103,6 +115,11 @@ let checkForWin = function() {
           console.log(`Congratulations, ${gameBoard[0][i]} wins!`);
           log.innerHTML = `Congratulations, ${gameBoard[0][i]} wins!`;
           gameWon = true;
+          if (gameBoard[0][i] === "X") {
+            xScore++;
+          } else {
+            oScore++;
+          }
           return;
         }// if
       } // if
@@ -119,6 +136,11 @@ let checkForWin = function() {
         console.log(`Congratulations, ${gameBoard[0][0]} wins!`);
         log.innerHTML = `Congratulations, ${gameBoard[0][0]} wins!`;
         gameWon = true;
+        if (gameBoard[0][0] === "X") {
+          xScore++;
+        } else {
+          oScore++;
+        }
         return;
       }
     }// if
@@ -134,6 +156,11 @@ let checkForWin = function() {
         console.log(`Congratulations, ${gameBoard[0][2]} wins!`);
         log.innerHTML = `Congratulations, ${gameBoard[0][2]} wins!`;
         gameWon = true;
+        if (gameBoard[0][2] === "X") {
+          xScore++;
+        } else {
+          oScore++;
+        }
         return;
       }
     } // if
@@ -157,6 +184,9 @@ let updateHTML = function() {
       } // if
     } // j loop
   } // i loop
+
+  scoreBoard.innerHTML = `X Score: ${xScore} | O Score: ${oScore}`;
+
 } // updateHTML
 
 // Create a variable that will increment every time a turn is made, and will stop the game once it reaches 9 (i.e. there will be no more space on the board).
@@ -216,7 +246,7 @@ $("#restart").click(function() {
 
   // Reset the log.
   log.innerHTML = "";
-})
+});
 
 
 let aiTurn = function() {
